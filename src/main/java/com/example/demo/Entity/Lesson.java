@@ -41,11 +41,11 @@ public class Lesson {
         this.description = description;
     }
 
-    public String getimageurl() {
+    public String getImageUrl() {
         return imageurl;
     }
 
-    public void setimageurl(String imageurl) {
+    public void setImageUrl(String imageurl) {
         this.imageurl = imageurl;
     }
 
