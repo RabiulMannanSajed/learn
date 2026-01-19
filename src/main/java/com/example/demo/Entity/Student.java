@@ -9,20 +9,22 @@ public class Student {
     @Id
     private String id;
 
-    private String name;
-    private String email;
-    private int age;
+    private String studentname;
+    private String studentaddress;
+    private String mobile;
 
     // ✅ Constructors
-    public Student() {}
+  
 
-    public Student(String name, String email, int age) {
-        this.name = name;
-        this.email = email;
-        this.age = age;
+    public Student(String id, String studentname, String studentaddress, String mobile) {
+        this.id = id;
+        this.studentname = studentname;
+        this.studentaddress = studentaddress;
+        this.mobile = mobile;
     }
-
-    // ✅ Getters & Setters
+ public Student() {
+    }
+    // ✅ Getters and Setters
     public String getId() {
         return id;
     }
@@ -31,27 +33,33 @@ public class Student {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStudentname() {
+        return studentname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStudentname(String studentname) {
+        this.studentname = studentname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getStudentaddress() {
+        return studentaddress;
     }
- 
-    public void setEmail(String email) {
-        this.email = email;
+
+    public void setStudentaddress(String studentaddress) {
+        this.studentaddress = studentaddress;
     }
- 
-    public int getAge() {
-        return age;
+
+    public String getMobile() {
+        return mobile;
     }
- 
-    public void setAge(int age) {
-        this.age = age;
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", studentname=" + studentname + ", studentaddress=" + studentaddress
+                + ", mobile=" + mobile + "]";
     }
 }
