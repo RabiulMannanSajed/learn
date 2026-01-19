@@ -10,15 +10,15 @@ public class Lesson {
     private String id;
     private String title;
     private String description;
-    private String teacherId;
+    private String imageurl;
 
     public Lesson() {
     }
 
-    public Lesson(String title, String description, String teacherId) {
+    public Lesson(String title, String description, String imageurl) {
         this.title = title;
         this.description = description;
-        this.teacherId = teacherId;
+        this.imageurl = imageurl;
     }
 
     public String getId() {
@@ -41,16 +41,16 @@ public class Lesson {
         this.description = description;
     }
 
-    public String getTeacherId() {
-        return teacherId;
+    public String getimageurl() {
+        return imageurl;
     }
 
-    public void setTeacherId(String teacherId) {
-        this.teacherId = teacherId;
+    public void setimageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
      @Override
     public String toString() {
-        return "Lesson [id=" + id + ", title=" + title + ", teacherId=" + teacherId + "]";
+        return "Lesson [id=" + id + ", title=" + title + ", imageurl=" + imageurl + "]";
     }
 }
