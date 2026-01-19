@@ -12,15 +12,19 @@ public class Student {
     private String studentname;
     private String studentaddress;
     private String mobile;
+    private String role;
+    private String gurdianname;
 
     // ✅ Constructors
   
 
-    public Student(String id, String studentname, String studentaddress, String mobile) {
+    public Student(String id, String studentname, String studentaddress, String mobile, String role, String gurdianname) {
         this.id = id;
         this.studentname = studentname;
         this.studentaddress = studentaddress;
         this.mobile = mobile;
+        this.role = role;
+        this.gurdianname = gurdianname;
     }
  public Student() {
     }
@@ -57,9 +61,30 @@ public class Student {
         this.mobile = mobile;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    public String getGurdianname() {
+        return gurdianname;
+    }
+
+    public void setGurdianname(String gurdianname) {
+        this.gurdianname = gurdianname;
+    }
+
     @Override
     public String toString() {
-        return "Student [id=" + id + ", studentname=" + studentname + ", studentaddress=" + studentaddress
-                + ", mobile=" + mobile + "]";
+      return "Student [id=" + id 
+        + ", studentname=" + studentname 
+        + ", studentaddress=" + studentaddress
+        + ", mobile=" + mobile
+        + ", guardianName=" + gurdianname
+        + ", role=" + role
+        + "]";
+
     }
 }

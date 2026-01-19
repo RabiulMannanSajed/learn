@@ -1,0 +1,56 @@
+package com.example.demo.Entity;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "lessons")
+
+public class Lesson {
+  @Id
+    private String id;
+    private String title;
+    private String description;
+    private String teacherId;
+
+    public Lesson() {
+    }
+
+    public Lesson(String title, String description, String teacherId) {
+        this.title = title;
+        this.description = description;
+        this.teacherId = teacherId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+     @Override
+    public String toString() {
+        return "Lesson [id=" + id + ", title=" + title + ", teacherId=" + teacherId + "]";
+    }
+}
