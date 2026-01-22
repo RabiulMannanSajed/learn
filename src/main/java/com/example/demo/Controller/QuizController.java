@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entity.Quiz;
+import com.example.demo.Entity.QuizSubmission;
 import com.example.demo.Repository.QuizRepo;
+import com.example.demo.Repository.QuizSubmissionRepo;
 
 
 @RestController
@@ -24,6 +26,8 @@ public class QuizController {
 
     @Autowired
     private QuizRepo quizRepo;
+   @Autowired
+    private QuizSubmissionRepo quizSubmissionRepo;
 
     // Add quiz to a lesson
     @PostMapping("/add")
@@ -39,20 +43,62 @@ public class QuizController {
     }
 
     // Student submits answer
-    @PostMapping("/submit/{quizId}")
-    public String submitAnswer(@PathVariable String lessonId,
-                               @PathVariable String quizId,
-                               @RequestParam int selectedOption) {
-        Quiz quiz = quizRepo.findById(quizId).orElse(null);
-        if (quiz == null || !quiz.getLessonId().equals(lessonId)) 
-            return "Quiz not found for this lesson";
+    // @PostMapping("/submit/{quizId}")
+    // public String submitAnswer(@PathVariable String lessonId,
+    //                            @PathVariable String quizId,
+    //                            @RequestParam int selectedOption) {
+    //     Quiz quiz = quizRepo.findById(quizId).orElse(null);
+    //     if (quiz == null || !quiz.getLessonId().equals(lessonId)) 
+    //         return "Quiz not found for this lesson";
 
-        if (selectedOption == quiz.getCorrectOptionIndex()) {
-            return "Correct!";
-        } else {
-            return "Wrong! Correct answer is option " + (quiz.getCorrectOptionIndex() + 1);
-        }
+    //     if (selectedOption == quiz.getCorrectOptionIndex()) {
+    //         return "Correct!";
+    //     } else {
+    //         return "Wrong! Correct answer is option " + (quiz.getCorrectOptionIndex() + 1);
+    //     }
+    // }
+    @PostMapping("/submit/{quizId}")
+        public String submitAnswer(
+        @PathVariable String lessonId,
+        @PathVariable String quizId,
+        @RequestParam String studentId,
+        @RequestParam int selectedOption) {
+
+        Quiz quiz = quizRepo.findById(quizId).orElse(null);
+
+    if (quiz == null || !quiz.getLessonId().equals(lessonId)) {
+        return "Quiz not found for this lesson";
     }
+
+        boolean isCorrect = selectedOption == quiz.getCorrectOptionIndex();
+        int marks = isCorrect ? 1 : 0;
+
+        QuizSubmission submission = new QuizSubmission(
+            studentId,
+            lessonId,
+            quizId,
+            selectedOption,
+            isCorrect,
+            marks
+    );
+
+        quizSubmissionRepo.save(submission);
+
+        return isCorrect
+            ? "Correct!"
+            : "Wrong! Correct answer is option " + (quiz.getCorrectOptionIndex() + 1);
+}
+
+    @GetMapping("/result/{studentId}")
+        public int getTotalMarks(@PathVariable String studentId) {
+        List<QuizSubmission> submissions =
+            quizSubmissionRepo.findByStudentId(studentId);
+
+        return submissions.stream()
+            .mapToInt(QuizSubmission::getMarks)
+            .sum();
+   }
+
 
     // Delete quiz
     @DeleteMapping("/delete/{quizId}")

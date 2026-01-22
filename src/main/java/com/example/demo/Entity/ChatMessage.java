@@ -31,6 +31,6 @@ public class ChatMessage {
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
 
- public String getReceiver() { return receiver; } // <-- add getter
+    public String getReceiver() { return receiver; } // <-- add getter
     public void setReceiver(String receiver) { this.receiver = receiver; } // <-- add setter
 }

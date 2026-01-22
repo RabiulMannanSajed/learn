@@ -30,6 +30,13 @@ public class StudentController {
     private StudentService studentServices;
 
 
+        @PostMapping("/login")
+         public Student login(@RequestBody Student student) {
+
+             return studentServices.loginByMobile(student.getMobile())
+            .orElseThrow(() -> new RuntimeException("User not found"));
+}
+
          @PostMapping(value ="/save")
       
          private String saveStudent(@RequestBody Student students) {

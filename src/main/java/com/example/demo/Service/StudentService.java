@@ -1,5 +1,7 @@
 package com.example.demo.Service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,9 @@ public class StudentService {
         studentRepo.deleteById(id);
     }
 
+      public Optional<Student> loginByMobile(String mobile) {
+        return studentRepo.findByMobile(mobile);
+    }
 //     public String getStudentById(String studentid) {
 //         // TODO Auto-generated method stub
 //        return studentRepo.findById(studentid).get()   

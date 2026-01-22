@@ -10,6 +10,7 @@ import com.example.demo.Repository.ChatRepo;
 
 @RestController
 @CrossOrigin(origins = "*")
+// * here we set the api end points
 @RequestMapping("api/v1/chat")
 public class ChatController {
 
