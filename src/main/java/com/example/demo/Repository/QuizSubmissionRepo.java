@@ -11,4 +11,8 @@ public interface QuizSubmissionRepo extends MongoRepository<QuizSubmission, Stri
     List<QuizSubmission> findByStudentId(String studentId);
 
     List<QuizSubmission> findByLessonIdAndStudentId(String lessonId, String studentId);
+
+    void deleteByStudentIdAndLessonId(String studentId, String lessonId);
+
+    void deleteByStudentIdAndQuizId(String studentId, String quizId);
 }

@@ -99,6 +99,16 @@ public class QuizController {
             .sum();
    }
 
+         
+   @DeleteMapping("/result/delete")
+public String deleteLessonResult(
+        @PathVariable String lessonId,
+        @RequestParam String studentId) {
+
+    quizSubmissionRepo.deleteByStudentIdAndLessonId(studentId, lessonId);
+
+    return "Quiz results deleted successfully";
+}
 
     // Delete quiz
     @DeleteMapping("/delete/{quizId}")
